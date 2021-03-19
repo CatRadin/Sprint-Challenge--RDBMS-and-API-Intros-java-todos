@@ -10,13 +10,15 @@ import javax.persistence.EntityNotFoundException;
 
 @Transactional
 @Service(value = "todosService")
-public class TodosServiceImpl implements TodosService {
+public class TodosServiceImpl implements TodosService
+{
     @Autowired
     private TodosRepository todosrepos;
 
     @Override
     public void markComplete(long todoid) {
-        Todos newTodos = todosrepos.findById(todoid).orElseThrow(() -> new EntityNotFoundException("Todo " + todoid + " not found!~"));
+        Todos newTodos = todosrepos.findById(todoid)
+                .orElseThrow(() -> new EntityNotFoundException("Todo " + todoid + " not found!"));
 
         newTodos.setCompleted(true);
     }

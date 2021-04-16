@@ -14,7 +14,9 @@ public class TodosServiceImpl implements TodosService
 {
     @Autowired // Autowiring in the repository
     private TodosRepository todosrepos;
+
 //Mark Complete --------------------------------------------------------------------
+    @Transactional
     @Override
     public void markComplete(long todoid) {
         Todos newTodos = todosrepos.findById(todoid)

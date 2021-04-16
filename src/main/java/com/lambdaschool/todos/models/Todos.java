@@ -7,8 +7,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "todos")
 public class Todos extends Auditable {
+    //Feilds ---------------------------------------------------------------------------
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO) //Generated Id
     private long todoid;
 
     @Column(nullable = false)
@@ -16,20 +17,23 @@ public class Todos extends Auditable {
 
     private boolean completed;
 
+    //Many to One ---------------------------------------------------------------------
     @ManyToOne
     @JoinColumn(name = "userid")
     @JsonIgnoreProperties(value = "todos", allowSetters = true)
     private User user;
 
+    //Default Constructor -------------------------------------------------------------
     public Todos() {
     }
 
+    //Single Constructor ---------------------------------------------------------------
     public Todos(User user, String description) {
         this.user = user;
         this.description = description;
         this.completed = false;
     }
-
+    //Getters & Setters ----------------------------------------------------------------
     public long getTodoid() {
         return todoid;
     }

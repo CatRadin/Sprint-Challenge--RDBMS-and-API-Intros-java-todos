@@ -12,9 +12,9 @@ import javax.persistence.EntityNotFoundException;
 @Service(value = "todosService")
 public class TodosServiceImpl implements TodosService
 {
-    @Autowired
+    @Autowired // Autowiring in the repository
     private TodosRepository todosrepos;
-
+//Mark Complete --------------------------------------------------------------------
     @Override
     public void markComplete(long todoid) {
         Todos newTodos = todosrepos.findById(todoid)
